@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/personal-website/static/css/main.403864da.chunk.css",
+    "main.js": "/personal-website/static/js/main.38e32b27.chunk.js",
+    "main.js.map": "/personal-website/static/js/main.38e32b27.chunk.js.map",
+    "runtime-main.js": "/personal-website/static/js/runtime-main.a56db186.js",
+    "runtime-main.js.map": "/personal-website/static/js/runtime-main.a56db186.js.map",
+    "static/js/2.33bda4f6.chunk.js": "/personal-website/static/js/2.33bda4f6.chunk.js",
+    "static/js/2.33bda4f6.chunk.js.map": "/personal-website/static/js/2.33bda4f6.chunk.js.map",
+    "index.html": "/personal-website/index.html",
+    "static/css/main.403864da.chunk.css.map": "/personal-website/static/css/main.403864da.chunk.css.map",
+    "static/js/2.33bda4f6.chunk.js.LICENSE.txt": "/personal-website/static/js/2.33bda4f6.chunk.js.LICENSE.txt",
+    "static/media/me.272362bf.jpg": "/personal-website/static/media/me.272362bf.jpg",
+    "static/media/resume-mooneyhan.5cbb529b.pdf": "/personal-website/static/media/resume-mooneyhan.5cbb529b.pdf"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a56db186.js",
+    "static/js/2.33bda4f6.chunk.js",
+    "static/css/main.403864da.chunk.css",
+    "static/js/main.38e32b27.chunk.js"
+  ]
+}
