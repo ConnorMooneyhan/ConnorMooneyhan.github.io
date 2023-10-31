@@ -32,8 +32,25 @@
         grid-row: 3;
         grid-column: 1;
       }
+      #timer-display {
+        border-radius: 9999px;
+        border: 1px solid black;
+        font-size: 3em;
+        aspect-ratio: 1 / 1;
+        width: 500px;
+        max-width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
       .hidden {
         display: none;
+      }
+      .green {
+        background-color: hsl(120, 100%, 80%);
+      }
+      .red {
+        background-color: hsl(0, 100%, 80%);
       }
     </style>
   </head>
@@ -63,7 +80,7 @@
       </form>
       <div id="timer" class="hidden">
         <p id="set-display"></p>
-        <p id="timer-display"></p>
+        <p id="timer-display" class="red"></p>
         <button id="start">start workout</button>
       </div>
     </main>
@@ -104,11 +121,11 @@
         });
       }
 
-      function beep(frequency = 800) {
+      async function beep(frequency = 1000) {
         let context = new AudioContext();
 
         // volume
-        let volume = context.createGain()
+        let volume = context.createGain();
         volume.connect(context.destination);
         volume.gain.value = 0.2;
 
@@ -120,9 +137,12 @@
         oscillator.connect(volume);
 
         oscillator.start();
-        setTimeout(function () {
-          oscillator.stop();
-        }, 200);
+        return new Promise((resolve, reject) => {
+          setTimeout(function () {
+            oscillator.stop();
+            resolve();
+          }, 200);
+        });
       }
 
       async function startTimer() {
@@ -130,18 +150,23 @@
         if (data.timerStyle === "seconds") {
           for (let i = 0; i < data.numSets; i++) {
             setDisplay.innerHTML = `SET: ${i + 1}`;
-            beep(5);
-            await countdownFrom(data.quantity, "{time} seconds left");
+            beep();
+            timerDisplay.classList.add("green");
+            timerDisplay.classList.remove("red");
+            await countdownFrom(data.quantity, "{time}");
             if (i + 1 < data.numSets) {
-              beep(1);
-              await countdownFrom(
-                data.restInterval,
-                "{time} more seconds to rest"
-              );
+              beep();
+              timerDisplay.classList.add("red");
+              timerDisplay.classList.remove("green");
+              await countdownFrom(data.restInterval, "{time}");
             }
           }
-          beep();
           timerDisplay.innerHTML = "DONE";
+          await beep(261.6);
+          await beep(523.25);
+          await beep(392);
+          await beep(440);
+          await beep(523.25);
         }
       }
     </script>
