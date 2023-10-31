@@ -80,7 +80,7 @@
       </form>
       <div id="timer" class="hidden">
         <p id="set-display"></p>
-        <p id="timer-display" class="red">START</p>
+        <p id="timer-display" class="red"></p>
       </div>
     </main>
     <script>
@@ -99,7 +99,7 @@
         const data = new FormData(e.target);
         window.formValues = JSON.stringify([...data.entries()]);
         timerContainer.classList.remove("hidden");
-        timerDisplay.innerHTML = null;
+        timerDisplay.innerHTML = "START";
         clearInterval(currentTimer);
       }
 
