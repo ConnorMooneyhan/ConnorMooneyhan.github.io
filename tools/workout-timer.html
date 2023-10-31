@@ -80,8 +80,7 @@
       </form>
       <div id="timer" class="hidden">
         <p id="set-display"></p>
-        <p id="timer-display" class="red"></p>
-        <button id="start">start workout</button>
+        <p id="timer-display" class="red">START</p>
       </div>
     </main>
     <script>
@@ -90,11 +89,10 @@
       let timerContainer = document.getElementById("timer");
       let timerDisplay = document.getElementById("timer-display");
       let setDisplay = document.getElementById("set-display");
-      let start = document.getElementById("start");
       let currentTimer;
 
       form.addEventListener("submit", createTimer);
-      start.addEventListener("click", startTimer);
+      timerDisplay.addEventListener("click", startTimer);
 
       function createTimer(e) {
         e.preventDefault();
