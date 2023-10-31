@@ -20,7 +20,6 @@
       #options {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        grid-auto-flow: column;
         max-width: max-content;
         row-gap: 0.5em;
         column-gap: 1em;
@@ -28,9 +27,8 @@
       #options label {
         grid-row: 1;
       }
-      #options button[type="submit"] {
-        grid-row: 3;
-        grid-column: 1;
+      #options p {
+        margin: 0;
       }
       #timer-display {
         border-radius: 9999px;
@@ -66,17 +64,17 @@
     </nav>
     <main>
       <form id="options">
-        <label for="timerStyle">timer style</label>
+        <p>timer style</p>
+        <p>reps/seconds</p>
+        <p>seconds between sets</p>
+        <p># of sets</p>
         <select id="timerStyle" name="timerStyle">
           <option value="reps">reps</option>
           <option value="seconds">seconds</option>
         </select>
-        <label for="quantity" type="number">reps/seconds</label
-        ><input id="quantity" name="quantity" />
-        <label for="restInterval" type="number">seconds between sets</label
-        ><input id="restInterval" name="restInterval" />
-        <label for="numSets" type="number"># of sets</label
-        ><input id="numSets" name="numSets" />
+        <input id="quantity" name="quantity" />
+        <input id="restInterval" name="restInterval" />
+        <input id="numSets" name="numSets" />
         <button type="submit" id="set-timer">set timer</button>
       </form>
       <div id="timer" class="hidden">
