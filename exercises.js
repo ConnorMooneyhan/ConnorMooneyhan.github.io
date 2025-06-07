@@ -18,12 +18,15 @@ const latexToMathjax = (str) => {
   // clean string
   str = str
     .replaceAll("\\begin{enumerate}[label=(\\alph*)]", '<ol class="alpha-with-parentheses">')
+    .replaceAll("\\begin{enumerate}[label=\\textbf{\\alph*.}]", '<ol class="alpha--bold">')
     .replaceAll("\\end{enumerate}", "</li></ol>")
+    .replaceAll(/\\textbf{([^}]+)}/g, "<strong>$1</strong>")
     .split("\\item ")
     .reduce((prev, cur, index) =>
-      index === 1 ? prev + "<li>" + cur : prev + "</li><li>" + cur,
+      index === 1 ? `${prev}<li>${cur}` : `${prev}</li><li>${cur}`,
     );
 
+  // dollar signs to \( \)
   let newStr = "";
   let opener = true;
   for (const char of str) {
@@ -116,8 +119,8 @@ generationButton.addEventListener("click", async (e) => {
   for (const exercise of exercises) {
     const el = document.createElement("div");
     el.innerHTML = `
-      <h2>${exercise.exercise} ${exercise.title || ""}</h2>
-      <p>${exercise.body}</p>
+      ${exercise.title ? `<h2>${exercise.exercise} ${exercise.title}</h2>` : ''}
+      <p>${exercise.title ? '' : `<strong class="exercise-number--inline">${exercise.exercise}.</strong>`}${exercise.body}</p>
       ${exercise.hint ? `<details><summary>Hint</summary>${exercise.hint}</details>` : ""}
       ${exercise.solution ? `<details><summary>Solution</summary>${exercise.solution}</details>` : ""}
     `;
