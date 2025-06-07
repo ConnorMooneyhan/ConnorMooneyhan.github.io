@@ -1,0 +1,99 @@
+:root {
+  font-size: 16px;
+  --section-padding: 0.75rem;
+}
+
+body {
+  font-family: serif;
+}
+
+header {
+  border-top: 1px solid grey;
+  padding: var(--section-padding) 0;
+}
+
+header,
+section {
+  border-bottom: 1px solid grey;
+  padding: var(--section-padding) 0;
+}
+
+h1 {
+  font-size: 1.5rem;
+  margin: 0.25rem 0;
+}
+
+h2 {
+  font-size: 1.125rem;
+  margin: 0.25rem 0;
+}
+
+h3 {
+  font-size: 1.125rem;
+  margin: 0;
+}
+
+hr {
+  margin: 1rem 0;
+}
+
+section > ul {
+  margin-bottom: 0.5rem;
+}
+
+label {
+  display: block;
+}
+
+#form {
+  display: grid;
+  grid-template-columns: auto minmax(488px, max-content);
+  gap: 1rem;
+  max-width: max-content;
+  padding: 1rem;
+}
+
+#form button[type="submit"] {
+  grid-column: 1 / -1;
+}
+
+#exercises {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+ol.alpha-with-parentheses {
+  list-style-type: lower-alpha;
+}
+
+ol.alpha-with-parentheses > li::marker {
+  content: "(" counter(list-item, lower-alpha) ") ";
+}
+
+@media (max-width: 450px) {
+  :root {
+    font-size: 12px;
+  }
+
+  ul {
+    padding-left: 16px;
+  }
+
+  #form {
+    grid-template-columns: 1fr;
+    gap: 0;
+    max-width: 100%;
+  }
+
+  select {
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  #form {
+    grid-template-columns: auto 300px;
+  }
+}
