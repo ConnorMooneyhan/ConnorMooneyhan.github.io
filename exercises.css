@@ -51,6 +51,7 @@ label {
   gap: 1rem;
   max-width: max-content;
   padding: 1rem;
+  margin: auto;
 }
 
 #form button[type="submit"] {
@@ -61,7 +62,9 @@ label {
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  margin: auto;
   margin-top: 1rem;
+  width: 550px;
 }
 
 ol.alpha-with-parentheses {
