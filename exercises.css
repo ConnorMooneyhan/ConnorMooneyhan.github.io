@@ -67,6 +67,18 @@ label {
   width: 550px;
 }
 
+.exercise-number--inline {
+  padding-right: 0.5rem;
+}
+
+ol.alpha--bold {
+  list-style-type: lower-alpha;
+}
+
+ol.alpha--bold li::marker {
+  font-weight: 700;
+}
+
 ol.alpha-with-parentheses {
   list-style-type: lower-alpha;
 }
