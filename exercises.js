@@ -110,7 +110,11 @@ const getExercises = async () => {
       hint: latexToMathjax(item.hint),
       solution: latexToMathjax(item.solution),
     }))
-    .sort((a, b) => (a.id < b.id ? -1 : 1));
+    .sort((a, b) =>
+      Number(a.exercise.match(/\d+$/)[0]) < Number(b.exercise.match(/\d+$/)[0])
+        ? -1
+        : 1,
+    );
 
   return items;
 };
