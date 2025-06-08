@@ -27,6 +27,7 @@ const latexToMathjax = (str) => {
     )
     .replaceAll("\\end{enumerate}", "</li></ol>")
     .replaceAll(/\\textbf{([^}]+)}/g, "<strong>$1</strong>")
+    .replaceAll(/\\textit{([^}]+)}/g, "<em>$1</em>")
     .split("\\item ")
     .reduce((prev, cur, index) =>
       index === 1 ? `${prev}<li>${cur}` : `${prev}</li><li>${cur}`,
