@@ -25,7 +25,9 @@ const latexToMathjax = (str) => {
       "\\begin{enumerate}[label=\\textbf{\\alph*.}]",
       '<ol class="alpha--bold">',
     )
+    .replaceAll("\\begin{itemize}", "<ul>")
     .replaceAll("\\end{enumerate}", "</li></ol>")
+    .replaceAll("\\end{itemize}", "</li></ul>")
     .replaceAll(/\\textbf{([^}]+)}/g, "<strong>$1</strong>")
     .replaceAll(/\\textit{([^}]+)}/g, "<em>$1</em>")
     .split("\\item ")
