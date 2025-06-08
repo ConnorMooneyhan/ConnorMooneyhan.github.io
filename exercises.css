@@ -87,6 +87,10 @@ ol.alpha-with-parentheses > li::marker {
   content: "(" counter(list-item, lower-alpha) ") ";
 }
 
+.hint :has(+ .solution) {
+  margin-bottom: .5rem;
+}
+
 @media (max-width: 450px) {
   :root {
     font-size: 12px;
