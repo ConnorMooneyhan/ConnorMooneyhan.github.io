@@ -17,8 +17,14 @@ const latexToMathjax = (str) => {
 
   // clean string
   str = str
-    .replaceAll("\\begin{enumerate}[label=(\\alph*)]", '<ol class="alpha-with-parentheses">')
-    .replaceAll("\\begin{enumerate}[label=\\textbf{\\alph*.}]", '<ol class="alpha--bold">')
+    .replaceAll(
+      "\\begin{enumerate}[label=(\\alph*)]",
+      '<ol class="alpha-with-parentheses">',
+    )
+    .replaceAll(
+      "\\begin{enumerate}[label=\\textbf{\\alph*.}]",
+      '<ol class="alpha--bold">',
+    )
     .replaceAll("\\end{enumerate}", "</li></ol>")
     .replaceAll(/\\textbf{([^}]+)}/g, "<strong>$1</strong>")
     .split("\\item ")
@@ -119,10 +125,10 @@ generationButton.addEventListener("click", async (e) => {
   for (const exercise of exercises) {
     const el = document.createElement("div");
     el.innerHTML = `
-      ${exercise.title ? `<h2>${exercise.exercise} ${exercise.title}</h2>` : ''}
-      <p>${exercise.title ? '' : `<strong class="exercise-number--inline">${exercise.exercise}.</strong>`}${exercise.body}</p>
-      ${exercise.hint ? `<details><summary>Hint</summary>${exercise.hint}</details>` : ""}
-      ${exercise.solution ? `<details><summary>Solution</summary>${exercise.solution}</details>` : ""}
+      ${exercise.title ? `<h2>${exercise.exercise} ${exercise.title}</h2>` : ""}
+      <p>${exercise.title ? "" : `<strong class="exercise-number--inline">${exercise.exercise}.</strong>`}${exercise.body}</p>
+      ${exercise.hint ? `<details class="hint"><summary>Hint</summary>${exercise.hint}</details>` : ""}
+      ${exercise.solution ? `<details class="solution"><summary>Solution</summary>${exercise.solution}</details>` : ""}
     `;
     fragment.appendChild(el);
   }
