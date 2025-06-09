@@ -35,23 +35,39 @@ const latexToMathjax = (str) => {
       index === 1 ? `${prev}<li>${cur}` : `${prev}</li><li>${cur}`,
     );
 
-  // dollar signs to \( \)
+  // dollar sign delimiters to mathjax equivalents
   let newStr = "";
   let opener = true;
-  for (const char of str) {
+  for (let i = 0; i < str.length; i++) {
+    const char = str[i];
+
     if (char !== "$") {
       newStr += char;
       continue;
     }
 
+    const prevChar = str[i - 1] || "";
+    const nextChar = str[i + 1] || "";
+
+    if (prevChar === "$") continue;
+
     if (opener) {
-      newStr += "\\(";
+      if (nextChar === "$") {
+        newStr += "\\[";
+      } else {
+        newStr += "\\(";
+      }
     } else {
-      newStr += "\\)";
+      if (nextChar === "$") {
+        newStr += "\\]";
+      } else {
+        newStr += "\\)";
+      }
     }
 
     opener = !opener;
   }
+
   return newStr;
 };
 
