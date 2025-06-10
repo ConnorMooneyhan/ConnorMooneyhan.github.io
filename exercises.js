@@ -17,6 +17,8 @@ const latexToMathjax = (str) => {
 
   // clean string
   str = str
+    .trim()
+    .replace(/^\\\s+\\/, '\\')
     .replaceAll(
       "\\begin{enumerate}[label=(\\alph*)]",
       '<ol class="alpha-with-parentheses">',
