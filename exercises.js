@@ -18,7 +18,7 @@ const latexToMathjax = (str) => {
   // clean string
   str = str
     .trim()
-    .replace(/^\\\s*\\/, '\\')
+    .replace(/^\\\s*\\/, "\\")
     .replaceAll(
       "\\begin{enumerate}[label=(\\alph*)]",
       '<ol class="alpha-with-parentheses">',
@@ -35,7 +35,12 @@ const latexToMathjax = (str) => {
     .split("\\item ")
     .reduce((prev, cur, index) =>
       index === 1 ? `${prev}<li>${cur}` : `${prev}</li><li>${cur}`,
-    );
+    )
+    .replaceAll(/\\dd(?=\W)/g, "\\mathop{}\\!\\mathrm{d}")
+    .replaceAll("\\S", "§")
+    .replaceAll("\\lbrack", "[")
+    .replaceAll("\\rbrack", "]")
+    .replaceAll("\\coloneq", ":=")
 
   // dollar sign delimiters to mathjax equivalents
   let newStr = "";
