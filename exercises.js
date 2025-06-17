@@ -41,6 +41,7 @@ const latexToMathjax = (str) => {
     .replaceAll("\\lbrack", "[")
     .replaceAll("\\rbrack", "]")
     .replaceAll("\\coloneq", ":=")
+    .replaceAll("\\eqcolon", "=:")
 
   // dollar sign delimiters to mathjax equivalents
   let newStr = "";
