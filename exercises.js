@@ -42,6 +42,8 @@ const latexToMathjax = (str) => {
     .replaceAll("\\rbrack", "]")
     .replaceAll("\\coloneq", ":=")
     .replaceAll("\\eqcolon", "=:")
+    .replaceAll(/\\begin{(tikzpicture|tikzcd)}/g, '<script type="text/tikz">\\begin{$1}')
+    .replaceAll(/\\end{(tikzpicture|tikzcd)}/g, '\\end{$1}</script>')
 
   // dollar sign delimiters to mathjax equivalents
   let newStr = "";
@@ -79,7 +81,14 @@ const latexToMathjax = (str) => {
   return newStr;
 };
 
-const typeset = () => {
+const typeset = async () => {
+  // document.querySelector('#tikzjax').remove()
+  // const tikzjax = document.createElement('script')
+  // tikzjax.id = 'tikzjax'
+  // tikzjax.src = `https://tikzjax.com/v1/tikzjax.js?v=${new Date().valueOf()}`
+  // document.querySelector('head').appendChild(tikzjax)
+  const { TikZJax } = await import('/tikzjax.mjs');
+  TikZJax(document);
   if (typeof MathJax !== "undefined") MathJax.typeset();
 };
 
