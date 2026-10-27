@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#4f46e5">
+  <title>Random Phrase Generator</title>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/phrases.css?v=10272026.1">
+</head>
+<body>
+  <header class="app-header">
+    <h1>Random Phrase Generator</h1>
+    <p class="subtitle">Add sets of words, put them in order, and generate a phrase with one random word from each set.</p>
+  </header>
+
+  <main>
+    <section class="result" aria-live="polite">
+      <p id="phrase" class="phrase placeholder">Your phrase will appear here</p>
+      <button id="copy-btn" class="btn btn-ghost" type="button" hidden>Copy</button>
+    </section>
+
+    <ol id="sets" class="sets"></ol>
+
+    <button id="add-set-btn" class="btn btn-secondary add-set" type="button">+ Add set</button>
+  </main>
+
+  <footer class="action-bar">
+    <button id="generate-btn" class="btn btn-primary" type="button">Generate random phrase</button>
+  </footer>
+
+  <template id="set-template">
+    <li class="set">
+      <div class="set-header">
+        <span class="set-number"></span>
+        <input class="set-name" type="text" placeholder="Name (optional)" aria-label="Set name">
+        <div class="set-controls">
+          <button class="icon-btn move-up" type="button" aria-label="Move set up" title="Move up">&#8593;</button>
+          <button class="icon-btn move-down" type="button" aria-label="Move set down" title="Move down">&#8595;</button>
+          <button class="icon-btn delete-set" type="button" aria-label="Delete set" title="Delete set">&#10005;</button>
+        </div>
+      </div>
+      <ul class="words"></ul>
+      <form class="add-word">
+        <input class="word-input" type="text" placeholder="word, another, …" aria-label="Add words" autocapitalize="none" enterkeyhint="done">
+        <button class="btn btn-secondary" type="submit">Add</button>
+      </form>
+    </li>
+  </template>
+
+  <script src="/phrases.js?v=10272026.1"></script>
+</body>
+</html>
