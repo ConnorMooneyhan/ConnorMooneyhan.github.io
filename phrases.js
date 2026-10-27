@@ -116,9 +116,9 @@
 
     const form = el.querySelector('.add-word');
     const input = el.querySelector('.word-input');
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const added = input.value.split(',').map((w) => w.trim()).filter(Boolean);
+    // Words are separated by any whitespace (including newlines) or commas
+    function addWords(text) {
+      const added = text.split(/[\s,]+/).filter(Boolean);
       if (!added.length) return;
       recordUndo();
       group.words.push(...added);
@@ -126,6 +126,24 @@
       render();
       // Keep focus in this group's input so several words can be added quickly
       groupsEl.querySelector(`[data-id="${group.id}"] .word-input`).focus();
+    }
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      addWords(input.value);
+    });
+
+    // A single-line input strips pasted newlines, which would glue words together,
+    // so paste with all whitespace collapsed to single spaces instead
+    input.addEventListener('paste', (e) => {
+      const pasted = e.clipboardData && e.clipboardData.getData('text');
+      if (!pasted || !/[\r\n\t]/.test(pasted)) return;
+      e.preventDefault();
+      const text = pasted.trim().replace(/\s+/g, ' ');
+      // execCommand keeps the browser's own Ctrl+Z working for the paste
+      if (!document.execCommand('insertText', false, text)) {
+        input.setRangeText(text, input.selectionStart, input.selectionEnd, 'end');
+      }
     });
 
     return el;

@@ -167,6 +167,7 @@ body.is-dragging { user-select: none; -webkit-user-select: none; cursor: grabbin
   border-radius: 6px;
 }
 .group-name:focus { outline: 2px solid var(--saber-blue); }
+.group-name::placeholder { font-weight: 400; color: var(--muted); }
 .group-controls { display: flex; gap: 4px; flex: none; }
 
 .icon-btn {
@@ -324,8 +325,8 @@ body.is-dragging { user-select: none; -webkit-user-select: none; cursor: grabbin
   .history-btn .btn-label { display: none; }
 }
 
-@media (max-width: 380px) {
-  .icon-btn { width: 38px; height: 38px; }
+@media (max-width: 400px) {
+  .icon-btn { width: 36px; height: 36px; }
   .btn-primary { font-size: 0.85rem; letter-spacing: 0.03em; }
 }
 
